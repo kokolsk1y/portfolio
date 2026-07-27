@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nikolay Kapelyushny — AI Automation Engineer</title>
+<meta name="description" content="AI Automation Engineer building practical LLM applications, reliable workflows and business-process automation." />
+<style>
+  :root{
+    --bg:#0e1014; --panel:#161922; --panel2:#1d212c; --line:#262b38;
+    --txt:#e7e9ee; --muted:#9aa3b2; --accent:#c9a96e; --accent2:#7fb285; --chip:#222734;
+    --radius:14px; --max:980px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+    line-height:1.6;font-size:16px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .toggle{position:fixed;top:12px;right:12px;z-index:50;display:flex;flex-wrap:wrap;gap:3px;
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px}
+  .toggle button{background:transparent;color:var(--muted);border:0;cursor:pointer;
+    font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px}
+  .toggle button.active{background:var(--accent);color:#1a1408}
+  header.hero{padding:76px 0 40px;border-bottom:1px solid var(--line)}
+  .kicker{color:var(--accent);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+  h1{font-size:clamp(28px,5vw,44px);margin:.3em 0 .15em;line-height:1.15}
+  .role{font-size:clamp(17px,2.6vw,22px);color:var(--accent2);font-weight:600;margin:0 0 14px}
+  .tagline{color:var(--muted);max-width:680px;font-size:17px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:22px;color:var(--muted);font-size:14px}
+  .meta b{color:var(--txt);font-weight:600}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .btn{display:inline-block;background:var(--accent);color:#1a1408;font-weight:700;
+    padding:10px 18px;border-radius:10px;font-size:14px}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  section{padding:46px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:22px;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 26px;font-size:15px}
+  .grid{display:grid;gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card.flag{border-color:var(--accent);box-shadow:0 0 0 1px rgba(201,169,110,.25)}
+  .card h3{margin:0 0 2px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    padding:3px 8px;border-radius:6px;background:var(--chip);color:var(--accent2)}
+  .badge.star{background:var(--accent);color:#1a1408}
+  .ptag{color:var(--muted);font-size:13px;margin:0 0 12px}
+  .card p{margin:8px 0}
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .stack span{background:var(--chip);color:var(--muted);font-size:12px;padding:4px 9px;border-radius:6px}
+  ul.feat{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+  ul.feat li{margin:3px 0}
+  .skillrow{display:grid;gap:10px}
+  .skill{display:flex;align-items:center;gap:12px;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+  .skill .lvl{margin-left:auto;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+  .lvl.adv{background:rgba(201,169,110,.18);color:var(--accent)}
+  .lvl.strong{background:rgba(127,178,133,.18);color:var(--accent2)}
+  .lvl.work{background:#2a2f3c;color:var(--muted)}
+  .lvl.learn{background:#2a2433;color:#c79ad9}
+  .skill .nm{font-weight:600}
+  .skill .ds{color:var(--muted);font-size:13px}
+  .colset{display:grid;gap:22px}
+  @media(min-width:720px){.colset{grid-template-columns:1fr 1fr}}
+  .panelbox{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .panelbox h4{margin:0 0 10px;font-size:15px;color:var(--accent)}
+  .chips span{display:inline-block;background:var(--chip);color:var(--muted);
+    font-size:13px;padding:5px 10px;border-radius:7px;margin:0 6px 6px 0}
+  .note{background:var(--panel2);border-left:3px solid var(--accent2);border-radius:8px;
+    padding:14px 16px;color:var(--muted);font-size:14px;margin-top:18px}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:14px}
+  footer a{margin-right:16px}
+  .more{color:var(--muted);font-size:14px;margin-top:14px}
+</style>
+</head>
+<body>
+
+<div class="toggle" id="toggle" role="group" aria-label="Language"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker" data-i="role"></div>
+    <h1>Nikolay Kapelyushny</h1>
+    <p class="role" data-i="role_line"></p>
+    <p class="tagline" data-i="tagline"></p>
+    <div class="meta">
+      <span><b>📍</b> <span data-i="meta_loc"></span></span>
+      <span><b>✉</b> <a href="mailto:ikokolsk1y@gmail.com">ikokolsk1y@gmail.com</a></span>
+      <span><b>⌨</b> <a href="https://github.com/kokolsk1y" target="_blank" rel="noopener">github.com/kokolsk1y</a></span>
+      <span><b>in</b> <a href="https://www.linkedin.com/in/nikolay-kapelushniy-365665420" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span><b>✈</b> <a href="https://t.me/kokolsk1y" target="_blank" rel="noopener">@kokolsk1y</a></span>
+      <span><b>🗣</b> <span data-i="meta_lang"></span></span>
+    </div>
+    <div class="cta">
+      <a class="btn" href="#projects" data-i="cta_proj"></a>
+      <a class="btn ghost" href="mailto:ikokolsk1y@gmail.com" data-i="cta_contact"></a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2 data-i="about_h"></h2>
+    <p class="sub" data-i="about_sub"></p>
+    <div class="colset">
+      <div class="panelbox">
+        <h4 data-i="str_h"></h4>
+        <ul class="feat" style="color:var(--txt)">
+          <li data-i="str_1"></li><li data-i="str_2"></li><li data-i="str_3"></li>
+          <li data-i="str_4"></li><li data-i="str_5"></li>
+        </ul>
+      </div>
+      <div class="panelbox">
+        <h4 data-i="grow_h"></h4>
+        <ul class="feat" style="color:var(--txt)">
+          <li data-i="grow_1"></li><li data-i="grow_2"></li><li data-i="grow_3"></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" data-i="note"></p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 data-i="proj_h"></h2>
+    <p class="sub" data-i="proj_sub"></p>
+    <div class="grid">
+
+      <div class="card flag">
+        <h3><span data-i="p1_t"></span> <span class="badge star" data-i="b_flag"></span></h3>
+        <p class="ptag" data-i="p1_tag"></p>
+        <p data-ih="p1_d"></p>
+        <ul class="feat"><li data-i="p1_f1"></li><li data-i="p1_f2"></li></ul>
+        <div class="stack"><span>Node.js</span><span>promptfoo</span><span>LLM-as-judge</span><span>OpenRouter</span><span>grammY</span><span>Railway</span></div>
+      </div>
+
+      <div class="card">
+        <h3><span data-i="p2_t"></span> <span class="badge" data-i="b_prod"></span></h3>
+        <p class="ptag" data-i="p2_tag"></p>
+        <p data-ih="p2_d"></p>
+        <ul class="feat"><li data-i="p2_f1"></li><li data-i="p2_f2"></li></ul>
+        <div class="stack"><span>n8n</span><span>Python</span><span>OpenRouter (DeepSeek)</span><span>Vision AI</span><span>Neon Postgres</span><span>Telegram</span></div>
+      </div>
+
+      <div class="card">
+        <h3><span data-i="p3_t"></span> <span class="badge" data-i="b_use"></span></h3>
+        <p class="ptag" data-i="p3_tag"></p>
+        <p data-ih="p3_d"></p>
+        <div class="stack"><span>Node.js</span><span>Puppeteer</span><span>Handlebars</span><span>Sharp</span><span>ExcelJS</span><span>Anthropic SDK</span></div>
+      </div>
+
+      <div class="card">
+        <h3><span data-i="p4_t"></span> <span class="badge" data-i="b_pdt"></span></h3>
+        <p class="ptag" data-i="p4_tag"></p>
+        <p data-ih="p4_d"></p>
+        <div class="stack"><span>SvelteKit</span><span>Vercel Functions</span><span>OpenRouter (Claude)</span><span>PWA</span><span>MiniSearch</span></div>
+      </div>
+
+      <div class="card">
+        <h3><span data-i="p5_t"></span> <span class="badge" data-i="b_prod"></span></h3>
+        <p class="ptag" data-i="p5_tag"></p>
+        <p data-ih="p5_d"></p>
+        <div class="stack"><span>SvelteKit</span><span>Cloudflare Workers</span><span>OpenRouter</span><span>MiniSearch</span><span>@zxing</span><span>PWA</span></div>
+      </div>
+
+      <div class="card">
+        <h3><span data-i="p6_t"></span> <span class="badge" data-i="b_prod"></span></h3>
+        <p class="ptag" data-i="p6_tag"></p>
+        <p data-ih="p6_d"></p>
+        <div class="stack"><span>TypeScript</span><span>Node.js</span><span>Neon Postgres</span><span>OpenRouter</span><span>Railway</span><span>GitHub API</span></div>
+      </div>
+
+    </div>
+    <p class="more" data-ih="more"></p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 data-i="skills_h"></h2>
+    <p class="sub" data-i="skills_sub"></p>
+    <div class="skillrow">
+      <div class="skill"><span class="nm">Prompt engineering</span><span class="lvl adv" data-i="lv_adv"></span></div>
+      <div class="skill"><span class="nm">LLM integration</span><span class="ds">&nbsp;— streaming, grounding, fallback</span><span class="lvl adv" data-i="lv_adv"></span></div>
+      <div class="skill"><span class="nm">LLM evaluation</span><span class="ds">&nbsp;— promptfoo, LLM-as-judge, rubrics</span><span class="lvl adv" data-i="lv_adv"></span></div>
+      <div class="skill"><span class="nm">RAG / retrieval grounding</span><span class="lvl strong" data-i="lv_str"></span></div>
+      <div class="skill"><span class="nm">Multimodal (Vision)</span><span class="lvl strong" data-i="lv_str"></span></div>
+      <div class="skill"><span class="nm">Agentic / multi-agent automation</span><span class="lvl strong" data-i="lv_str"></span></div>
+      <div class="skill"><span class="nm">TypeScript / Node.js · SvelteKit</span><span class="lvl strong" data-i="lv_str"></span></div>
+      <div class="skill"><span class="nm">Postgres (Neon) · n8n · serverless</span><span class="lvl strong" data-i="lv_str"></span></div>
+      <div class="skill"><span class="nm">Python</span><span class="ds">&nbsp;— scripting &amp; data</span><span class="lvl work" data-i="lv_wrk"></span></div>
+      <div class="skill"><span class="nm">CI/CD · testing · monitoring</span><span class="lvl work" data-i="lv_wrk"></span></div>
+      <div class="skill"><span class="nm">LangChain · LlamaIndex · Ragas · MLflow</span><span class="lvl learn" data-i="lv_lrn"></span></div>
+      <div class="skill"><span class="nm">ML / math foundations · Go · AWS</span><span class="lvl learn" data-i="lv_lrn"></span></div>
+    </div>
+    <div class="colset" style="margin-top:22px">
+      <div class="panelbox">
+        <h4 data-i="prov_h"></h4>
+        <div class="chips"><span>OpenAI</span><span>Anthropic</span><span>DeepSeek</span><span>OpenRouter (multi-provider)</span></div>
+      </div>
+      <div class="panelbox">
+        <h4 data-i="infra_h"></h4>
+        <div class="chips"><span>Vercel</span><span>Cloudflare Workers</span><span>Railway</span><span>Neon Postgres</span><span>GitHub Pages/Actions</span><span>Puppeteer</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2 style="margin-bottom:10px" data-i="foot_h"></h2>
+    <p style="color:var(--muted);max-width:560px" data-i="foot_p"></p>
+    <p>
+      <a href="mailto:ikokolsk1y@gmail.com">ikokolsk1y@gmail.com</a>
+      <a href="https://github.com/kokolsk1y" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nikolay-kapelushniy-365665420" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://t.me/kokolsk1y" target="_blank" rel="noopener">Telegram @kokolsk1y</a>
+    </p>
+    <p style="color:var(--line);font-size:12px;margin-top:24px">© 2026 Nikolay Kapelyushny</p>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  en:{
+    _name:"EN",
+    role:"AI Automation Engineer · Applied AI Builder",
+    role_line:"Practical LLM applications, reliable workflows & business-process automation",
+    tagline:"I build AI products people can use: LLM integrations, grounded answers, evaluation, multimodal workflows and human-in-the-loop automation. I take work from a business problem to a deployed result.",
+    meta_loc:"Kaliningrad, Russia (GMT+2) · remote · open to relocation",
+    meta_lang:"English B2 (refreshing) · Russian native",
+    cta_proj:"See projects", cta_contact:"Contact me",
+    about_h:"What I bring",
+    about_sub:"Independent AI builder since Nov 2025. I have shipped 5+ practical LLM applications and automations, alongside my own LLM-evaluation harness.",
+    str_h:"How I create value",
+    str_1:"End-to-end delivery: idea → architecture → production → measurable result",
+    str_2:"Prompt engineering & LLM integration in real products",
+    str_3:"LLM output evaluation (LLM-as-judge, rubrics, metrics)",
+    str_4:"Retrieval grounding / RAG & multimodal (Vision) pipelines",
+    str_5:"Business-process automation that saves real money",
+    grow_h:"Working style",
+    grow_1:"Own the full loop: clarify the problem, build, deploy and improve from feedback",
+    grow_2:"Use AI deliberately for speed while staying accountable for architecture and output quality",
+    grow_3:"Growing deeper in production engineering, ML fundamentals and evaluation systems",
+    note:"I am early in my engineering career and deliberately choose real, end-to-end work over tutorial projects. I learn fast, communicate directly and care about reliable outcomes.",
+    proj_h:"Selected projects",
+    proj_sub:"Client work is anonymized. Code samples available on request where confidentiality allows.",
+    b_flag:"★ flagship", b_prod:"production", b_use:"in use", b_pdt:"product",
+    p1_t:"LLM Evaluation Harness",
+    p1_tag:"Automated grading of prompt-engineering submissions · ~2,400 LOC · built A→Z by me",
+    p1_d:"An evaluation pipeline that scores prompts against hidden test sets. A <b>target</b> model runs the candidate's prompt; an <b>LLM-as-judge</b> grades the output against rubrics. Produces a 0–10 score with per-case breakdown, plus delta-vs-baseline and paired metrics for tricky tasks. Submissions via a Telegram bot.",
+    p1_f1:"Quality metrics & systematic output evaluation — the hard, \"engineering\" part of LLM work",
+    p1_f2:"Reproducible eval config, hidden vs training split, rubric-based judging",
+    p2_t:"Multimodal Review-Response Pipeline",
+    p2_tag:"Marketplace reviews → AI replies + photo analysis · fully implemented by me",
+    p2_d:"Ingests review exports, generates grounded replies with an LLM, and analyzes attached <b>photos via Vision AI</b> to catch product defects before responding. Batches stored in Postgres; replies go to Telegram for human approval (human-in-the-loop).",
+    p2_f1:"Text + vision (multimodal) — the closest thing to document understanding / OCR in my stack",
+    p2_f2:"A product \"every marketplace business needs\"",
+    p3_t:"AI-assisted Product-Card Generator",
+    p3_tag:"Excel → 6 marketplace cards per product · daily driver, big cost savings",
+    p3_d:"Generates marketplace infographic cards (hero, specs, dimensions, line-up, mounting, usage) from a spreadsheet. HTML templates rendered headless to pixel-perfect PNGs, Anthropic SDK for description parsing, fit-to-safe-box layout. Replaces hours of manual design per series.",
+    p4_t:"Grounded Conversational AI",
+    p4_tag:"AI assistant grounded on a product catalog · ~$0.003 / dialog",
+    p4_d:"A conversational assistant strictly grounded on a catalog to prevent hallucinations, with an <b>asynchronous verifier</b> that re-checks each answer against the source data and flags mismatches. Multilingual, streamed responses, installable PWA, Telegram notifications.",
+    p5_t:"Production RAG Assistant + Resilient LLM Infra",
+    p5_tag:"In-store PWA: retrieval + LLM dialog with reliability layer",
+    p5_d:"Retrieval over a catalog (MiniSearch) feeding an LLM dialog that helps pick the right product/kit. Hardened for production: a <b>model fallback chain</b>, a Cloudflare Worker proxy with rate-limiting and prefix-caching, plus barcode/QR scanning and voice input.",
+    p6_t:"Agentic Automation + Observability",
+    p6_tag:"Telegram-driven content automation with cost tracking",
+    p6_d:"An agent that publishes content and edits a site from natural-language commands, on a reusable <b>Command Pipeline</b>. Notable for the engineering plumbing: per-command <b>token & USD cost logging to Postgres</b> (observability), advisory locks for concurrency, and a local build-gate before publishing.",
+    more:"<b>Also:</b> semantic-search clothing marketplace (Next.js) · multi-agent evaluation platform (aiogram + Postgres) · an 18-agent dev-workflow framework published as an npm package · Python document-generation tooling.",
+    skills_h:"Technical focus", skills_sub:"Hands-on technologies used across shipped projects; I keep developing depth in the areas below.",
+    lv_adv:"Advanced", lv_str:"Strong", lv_wrk:"Working", lv_lrn:"Learning",
+    prov_h:"LLM providers", infra_h:"Infra & tools",
+    foot_h:"Let's talk",
+    foot_p:"Open to remote junior-to-mid AI Automation, Applied AI and LLM Engineer roles — and to relocation. I respond fast."
+  },
+  ru:{
+    _name:"RU",
+    role:"AI Product / Automation Engineer",
+    role_line:"Строю продакшн-приложения на LLM и автоматизацию бизнес-процессов",
+    tagline:"Довожу ИИ-продукты от идеи до реального бизнес-результата — grounding/RAG, оценка качества вывода, мультимодальные пайплайны и agentic-автоматизация. Делаю быстро, целиком и с упором на измеримую пользу.",
+    meta_loc:"Калининград, Россия (GMT+2) · удалёнка · открыт к переезду",
+    meta_lang:"Английский B2 (обновляю) · русский родной",
+    cta_proj:"Проекты", cta_contact:"Связаться",
+    about_h:"Чем я занимаюсь",
+    about_sub:"С ноября 2025 как независимый разработчик отгрузил 5+ продакшн-приложений на LLM — и собственную систему оценки качества LLM.",
+    str_h:"Сильные стороны",
+    str_1:"Доведение от идеи до прод-результата целиком",
+    str_2:"Prompt engineering и интеграция LLM в реальные продукты",
+    str_3:"Оценка вывода LLM (LLM-as-judge, rubric, метрики)",
+    str_4:"Grounding/RAG и мультимодальные (Vision) пайплайны",
+    str_5:"Автоматизация процессов, экономящая бизнесу деньги",
+    grow_h:"Честно — над чем работаю",
+    grow_1:"Более самостоятельный код и отладка без опоры на ИИ",
+    grow_2:"Фундамент ML/математики (искренне люблю — хочу глубины)",
+    grow_3:"Индустриальный RAG/eval-стек: LangChain, LlamaIndex, Ragas, MLflow",
+    note:"Работаю с ИИ-ассистированием: проектирую систему, пишу промпты, оцениваю вывод и оркестрирую сборку. Говорю об этом честно — и целенаправленно прокачиваю самостоятельную инженерию и фундамент ML.",
+    proj_h:"Избранные проекты",
+    proj_sub:"Клиентские проекты анонимизированы. Примеры кода — по запросу, где позволяет конфиденциальность.",
+    b_flag:"★ флагман", b_prod:"прод", b_use:"в работе", b_pdt:"продукт",
+    p1_t:"LLM Evaluation Harness",
+    p1_tag:"Автооценка решений по prompt-engineering · ~2 400 строк · сделано мной от А до Я",
+    p1_d:"Пайплайн оценки промптов на скрытых тест-сетах. <b>Target</b>-модель прогоняет промпт кандидата; <b>LLM-as-judge</b> оценивает вывод по rubric. Выдаёт балл 0–10 с разбором по кейсам, дельтой к baseline и парными метриками для сложных задач. Приём сдач — через Telegram-бота.",
+    p1_f1:"Метрики качества и системная оценка вывода — самая «инженерная» часть работы с LLM",
+    p1_f2:"Воспроизводимый eval-конфиг, скрытые/тренировочные наборы, оценка по rubric",
+    p2_t:"Мультимодальный пайплайн ответов на отзывы",
+    p2_tag:"Отзывы маркетплейсов → ИИ-ответы + анализ фото · полностью реализовано мной",
+    p2_d:"Импорт выгрузок отзывов, генерация ответов LLM и <b>анализ фото через Vision AI</b> для выявления дефектов до ответа. Батчи в Postgres; ответы уходят в Telegram на ручное подтверждение (human-in-the-loop).",
+    p2_f1:"Текст + зрение (мультимодальность) — ближайшее к document understanding / OCR",
+    p2_f2:"Продукт, нужный «любому бизнесу на маркетплейсах»",
+    p3_t:"Генератор карточек товаров с ИИ",
+    p3_tag:"Excel → 6 карточек на товар · использую постоянно, большая экономия",
+    p3_d:"Генерирует инфографику-карточки (hero, характеристики, габариты, линейка, монтаж, применение) из таблицы. HTML-шаблоны рендерятся headless в pixel-perfect PNG, Anthropic SDK для парсинга описаний, алгоритм авто-вписывания. Заменяет часы ручного дизайна на серию.",
+    p4_t:"Диалоговый ИИ с grounding",
+    p4_tag:"ИИ-ассистент с grounding по каталогу · ~$0.003 / диалог",
+    p4_d:"Диалоговый ассистент со строгим grounding по каталогу против галлюцинаций и <b>асинхронным верификатором</b>, который перепроверяет ответ по исходным данным и помечает несоответствия. Мультиязык, стриминг, устанавливаемая PWA, уведомления в Telegram.",
+    p5_t:"Прод RAG-ассистент + надёжная LLM-инфра",
+    p5_tag:"PWA для зала: retrieval + LLM-диалог со слоем надёжности",
+    p5_d:"Retrieval по каталогу (MiniSearch) питает LLM-диалог для подбора товара/комплекта. Закалено под прод: <b>fallback-цепочка моделей</b>, Cloudflare-Worker прокси с rate-limit и prefix-caching, сканер штрих-кодов/QR и голосовой ввод.",
+    p6_t:"Agentic-автоматизация + observability",
+    p6_tag:"Автоматизация контента из Telegram с учётом стоимости",
+    p6_d:"Агент публикует контент и правит сайт по командам на естественном языке поверх переиспользуемого <b>Command Pipeline</b>. Ценен инженерной обвязкой: <b>логирование токенов и стоимости ($) в Postgres</b> (observability), advisory-locks для конкурентности, локальный build-gate перед публикацией.",
+    more:"<b>Ещё:</b> маркетплейс одежды с семантическим поиском (Next.js) · мультиагентная платформа оценки (aiogram + Postgres) · фреймворк из 18 агентов для dev-workflow, опубликован npm-пакетом · Python-инструменты генерации документов.",
+    skills_h:"Навыки", skills_sub:"Честные уровни — включая то, что ещё осваиваю.",
+    lv_adv:"Продвинуто", lv_str:"Уверенно", lv_wrk:"Базово", lv_lrn:"Учу",
+    prov_h:"Провайдеры LLM", infra_h:"Инфра и инструменты",
+    foot_h:"Давайте на связь",
+    foot_p:"Открыт к удалённым ролям AI Product / Automation Engineer — и к переезду. Отвечаю быстро."
+  },
+  es:{
+    _name:"ES",
+    role:"AI Product / Automation Engineer",
+    role_line:"Construyo aplicaciones LLM en producción y automatización de procesos de negocio",
+    tagline:"Llevo los productos de IA de la idea a un resultado de negocio funcional — grounding/RAG, evaluación de salidas, pipelines multimodales y automatización con agentes. Entrego rápido, de extremo a extremo, midiendo lo que importa.",
+    meta_loc:"Kaliningrado, Rusia (GMT+2) · remoto · abierto a reubicación",
+    meta_lang:"Inglés B2 (en repaso) · ruso nativo",
+    cta_proj:"Ver proyectos", cta_contact:"Contáctame",
+    about_h:"Qué hago",
+    about_sub:"Desde nov. 2025 he lanzado más de 5 aplicaciones LLM en producción como desarrollador independiente, además de mi propio sistema de evaluación de LLM.",
+    str_h:"Fortalezas",
+    str_1:"Entrega de extremo a extremo: idea → arquitectura → producción → resultado medible",
+    str_2:"Prompt engineering e integración de LLM en productos reales",
+    str_3:"Evaluación de salidas de LLM (LLM-as-judge, rúbricas, métricas)",
+    str_4:"Grounding / RAG y pipelines multimodales (Vision)",
+    str_5:"Automatización de procesos que ahorra dinero real",
+    grow_h:"Honestamente, en qué estoy creciendo",
+    grow_1:"Programación y depuración más autónomas, sin asistencia de IA",
+    grow_2:"Fundamentos de ML/matemáticas (me encantan — quiero profundidad)",
+    grow_3:"Stack industrial RAG/eval: LangChain, LlamaIndex, Ragas, MLflow",
+    note:"Trabajo asistido por IA: diseño el sistema, escribo los prompts, evalúo las salidas y orquesto la construcción. Lo digo con transparencia — y mejoro activamente mi ingeniería desde cero y mis fundamentos de ML.",
+    proj_h:"Proyectos seleccionados",
+    proj_sub:"El trabajo de clientes está anonimizado. Muestras de código a petición, cuando la confidencialidad lo permite.",
+    b_flag:"★ destacado", b_prod:"producción", b_use:"en uso", b_pdt:"producto",
+    p1_t:"LLM Evaluation Harness",
+    p1_tag:"Evaluación automática de tareas de prompt engineering · ~2.400 líneas · de la A a la Z",
+    p1_d:"Pipeline que puntúa prompts contra conjuntos de prueba ocultos. Un modelo <b>target</b> ejecuta el prompt del candidato; un <b>LLM-as-judge</b> puntúa la salida según rúbricas. Da 0–10 con desglose por caso, delta vs baseline y métricas pareadas. Entregas vía bot de Telegram.",
+    p1_f1:"Métricas de calidad y evaluación sistemática de salidas — la parte «de ingeniería» del trabajo con LLM",
+    p1_f2:"Config de evaluación reproducible, conjuntos ocultos/entrenamiento, juicio por rúbrica",
+    p2_t:"Pipeline multimodal de respuesta a reseñas",
+    p2_tag:"Reseñas de marketplaces → respuestas IA + análisis de fotos · implementado por completo por mí",
+    p2_d:"Importa exportaciones de reseñas, genera respuestas con LLM y analiza <b>fotos vía Vision AI</b> para detectar defectos antes de responder. Lotes en Postgres; respuestas a Telegram para aprobación humana (human-in-the-loop).",
+    p2_f1:"Texto + visión (multimodal) — lo más cercano a document understanding / OCR en mi stack",
+    p2_f2:"Un producto «que todo negocio en marketplaces necesita»",
+    p3_t:"Generador de fichas de producto con IA",
+    p3_tag:"Excel → 6 fichas por producto · uso diario, gran ahorro",
+    p3_d:"Genera fichas infográficas (hero, specs, dimensiones, gama, montaje, uso) desde una hoja de cálculo. Plantillas HTML renderizadas headless a PNG pixel-perfect, Anthropic SDK para análisis de descripciones. Sustituye horas de diseño manual por serie.",
+    p4_t:"IA conversacional con grounding",
+    p4_tag:"Asistente IA anclado a un catálogo · ~$0,003 / diálogo",
+    p4_d:"Asistente anclado estrictamente a un catálogo para evitar alucinaciones, con un <b>verificador asíncrono</b> que revisa cada respuesta contra los datos de origen y marca discrepancias. Multilingüe, en streaming, PWA instalable, notificaciones en Telegram.",
+    p5_t:"Asistente RAG en producción + infraestructura LLM resiliente",
+    p5_tag:"PWA en tienda: recuperación + diálogo LLM con capa de fiabilidad",
+    p5_d:"Recuperación sobre un catálogo (MiniSearch) que alimenta un diálogo LLM para elegir el producto/kit correcto. Robustecido: <b>cadena de modelos de respaldo</b>, proxy Cloudflare Worker con rate-limiting y prefix-caching, escaneo de códigos de barras/QR y entrada por voz.",
+    p6_t:"Automatización con agentes + observabilidad",
+    p6_tag:"Automatización de contenido desde Telegram con seguimiento de costes",
+    p6_d:"Un agente que publica contenido y edita un sitio por comandos en lenguaje natural, sobre un <b>Command Pipeline</b> reutilizable. Destaca por la ingeniería: <b>registro de tokens y coste en USD por comando en Postgres</b> (observabilidad), advisory locks para concurrencia y build-gate local antes de publicar.",
+    more:"<b>También:</b> marketplace de ropa con búsqueda semántica (Next.js) · plataforma de evaluación multiagente (aiogram + Postgres) · framework de 18 agentes para flujos de desarrollo publicado como paquete npm · herramientas de generación de documentos en Python.",
+    skills_h:"Competencias", skills_sub:"Niveles honestos — incluyendo lo que aún estoy aprendiendo.",
+    lv_adv:"Avanzado", lv_str:"Sólido", lv_wrk:"En práctica", lv_lrn:"Aprendiendo",
+    prov_h:"Proveedores de LLM", infra_h:"Infra y herramientas",
+    foot_h:"Hablemos",
+    foot_p:"Abierto a roles remotos de AI Product / Automation Engineer — y a reubicación. Respondo rápido."
+  },
+  pt:{
+    _name:"PT",
+    role:"AI Product / Automation Engineer",
+    role_line:"Construo aplicações LLM em produção e automação de processos de negócio",
+    tagline:"Levo produtos de IA da ideia a um resultado de negócio funcional — grounding/RAG, avaliação de saídas, pipelines multimodais e automação com agentes. Entrego rápido, de ponta a ponta, medindo o que importa.",
+    meta_loc:"Kaliningrado, Rússia (GMT+2) · remoto · aberto a realocação",
+    meta_lang:"Inglês B2 (em revisão) · russo nativo",
+    cta_proj:"Ver projetos", cta_contact:"Fale comigo",
+    about_h:"O que eu faço",
+    about_sub:"Desde nov. 2025 entreguei mais de 5 aplicações LLM em produção como desenvolvedor independente, além do meu próprio sistema de avaliação de LLM.",
+    str_h:"Pontos fortes",
+    str_1:"Entrega de ponta a ponta: ideia → arquitetura → produção → resultado mensurável",
+    str_2:"Prompt engineering e integração de LLM em produtos reais",
+    str_3:"Avaliação de saídas de LLM (LLM-as-judge, rubricas, métricas)",
+    str_4:"Grounding / RAG e pipelines multimodais (Vision)",
+    str_5:"Automação de processos que economiza dinheiro real",
+    grow_h:"Honestamente, no que estou evoluindo",
+    grow_1:"Programação e depuração mais autônomas, sem assistência de IA",
+    grow_2:"Fundamentos de ML/matemática (amo de verdade — quero profundidade)",
+    grow_3:"Stack industrial RAG/eval: LangChain, LlamaIndex, Ragas, MLflow",
+    note:"Trabalho assistido por IA: desenho o sistema, escrevo os prompts, avalio as saídas e orquestro a construção. Sou transparente sobre isso — e aprimoro ativamente minha engenharia do zero e meus fundamentos de ML.",
+    proj_h:"Projetos selecionados",
+    proj_sub:"O trabalho de clientes está anonimizado. Amostras de código sob pedido, quando a confidencialidade permite.",
+    b_flag:"★ destaque", b_prod:"produção", b_use:"em uso", b_pdt:"produto",
+    p1_t:"LLM Evaluation Harness",
+    p1_tag:"Avaliação automática de tarefas de prompt engineering · ~2.400 linhas · de A a Z",
+    p1_d:"Pipeline que pontua prompts contra conjuntos de teste ocultos. Um modelo <b>target</b> executa o prompt do candidato; um <b>LLM-as-judge</b> pontua a saída por rubricas. Dá 0–10 com detalhamento por caso, delta vs baseline e métricas pareadas. Envios via bot do Telegram.",
+    p1_f1:"Métricas de qualidade e avaliação sistemática de saídas — a parte «de engenharia» do trabalho com LLM",
+    p1_f2:"Config de avaliação reproduzível, conjuntos ocultos/treino, julgamento por rubrica",
+    p2_t:"Pipeline multimodal de resposta a avaliações",
+    p2_tag:"Avaliações de marketplaces → respostas IA + análise de fotos · totalmente implementado por mim",
+    p2_d:"Importa exportações de avaliações, gera respostas com LLM e analisa <b>fotos via Vision AI</b> para detectar defeitos antes de responder. Lotes no Postgres; respostas ao Telegram para aprovação humana (human-in-the-loop).",
+    p2_f1:"Texto + visão (multimodal) — o mais próximo de document understanding / OCR no meu stack",
+    p2_f2:"Um produto «que todo negócio em marketplaces precisa»",
+    p3_t:"Gerador de cartões de produto com IA",
+    p3_tag:"Excel → 6 cartões por produto · uso diário, grande economia",
+    p3_d:"Gera cartões infográficos (hero, specs, dimensões, linha, montagem, uso) a partir de uma planilha. Modelos HTML renderizados headless em PNG pixel-perfect, Anthropic SDK para análise de descrições. Substitui horas de design manual por série.",
+    p4_t:"IA conversacional com grounding",
+    p4_tag:"Assistente IA ancorado a um catálogo · ~$0,003 / diálogo",
+    p4_d:"Assistente ancorado estritamente a um catálogo para evitar alucinações, com um <b>verificador assíncrono</b> que revisa cada resposta contra os dados de origem e sinaliza divergências. Multilíngue, em streaming, PWA instalável, notificações no Telegram.",
+    p5_t:"Assistente RAG em produção + infraestrutura LLM resiliente",
+    p5_tag:"PWA em loja: recuperação + diálogo LLM com camada de confiabilidade",
+    p5_d:"Recuperação sobre um catálogo (MiniSearch) alimentando um diálogo LLM para escolher o produto/kit certo. Robustecido: <b>cadeia de modelos de fallback</b>, proxy Cloudflare Worker com rate-limiting e prefix-caching, leitura de códigos de barras/QR e entrada por voz.",
+    p6_t:"Automação com agentes + observabilidade",
+    p6_tag:"Automação de conteúdo pelo Telegram com controle de custos",
+    p6_d:"Um agente que publica conteúdo e edita um site por comandos em linguagem natural, sobre um <b>Command Pipeline</b> reutilizável. Destaque pela engenharia: <b>registro de tokens e custo em USD por comando no Postgres</b> (observabilidade), advisory locks para concorrência e build-gate local antes de publicar.",
+    more:"<b>Também:</b> marketplace de roupas com busca semântica (Next.js) · plataforma de avaliação multiagente (aiogram + Postgres) · framework de 18 agentes para fluxos de desenvolvimento publicado como pacote npm · ferramentas de geração de documentos em Python.",
+    skills_h:"Competências", skills_sub:"Níveis honestos — incluindo o que ainda estou aprendendo.",
+    lv_adv:"Avançado", lv_str:"Sólido", lv_wrk:"Em prática", lv_lrn:"Aprendendo",
+    prov_h:"Provedores de LLM", infra_h:"Infra e ferramentas",
+    foot_h:"Vamos conversar",
+    foot_p:"Aberto a vagas remotas de AI Product / Automation Engineer — e a realocação. Respondo rápido."
+  },
+  fr:{
+    _name:"FR",
+    role:"AI Product / Automation Engineer",
+    role_line:"Je construis des applications LLM en production et de l'automatisation de processus métier",
+    tagline:"J'amène les produits IA de l'idée à un résultat métier concret — grounding/RAG, évaluation des sorties, pipelines multimodaux et automatisation par agents. Je livre vite, de bout en bout, en mesurant l'essentiel.",
+    meta_loc:"Kaliningrad, Russie (GMT+2) · à distance · ouvert à la relocalisation",
+    meta_lang:"Anglais B2 (remise à niveau) · russe natif",
+    cta_proj:"Voir les projets", cta_contact:"Me contacter",
+    about_h:"Ce que je fais",
+    about_sub:"Depuis nov. 2025, j'ai livré plus de 5 applications LLM en production en indépendant, ainsi que mon propre système d'évaluation de LLM.",
+    str_h:"Points forts",
+    str_1:"Livraison de bout en bout : idée → architecture → production → résultat mesurable",
+    str_2:"Prompt engineering et intégration de LLM dans des produits réels",
+    str_3:"Évaluation des sorties de LLM (LLM-as-judge, grilles, métriques)",
+    str_4:"Grounding / RAG et pipelines multimodaux (Vision)",
+    str_5:"Automatisation de processus qui fait économiser de l'argent réel",
+    grow_h:"Honnêtement, ce que je développe",
+    grow_1:"Codage et débogage plus autonomes, sans assistance IA",
+    grow_2:"Fondamentaux ML/maths (j'adore vraiment — je veux de la profondeur)",
+    grow_3:"Stack industrielle RAG/eval : LangChain, LlamaIndex, Ragas, MLflow",
+    note:"Je travaille assisté par IA : je conçois le système, j'écris les prompts, j'évalue les sorties et j'orchestre la réalisation. Je le dis en toute transparence — et je renforce activement mon ingénierie « from scratch » et mes bases en ML.",
+    proj_h:"Projets sélectionnés",
+    proj_sub:"Le travail client est anonymisé. Échantillons de code sur demande, lorsque la confidentialité le permet.",
+    b_flag:"★ phare", b_prod:"production", b_use:"utilisé", b_pdt:"produit",
+    p1_t:"LLM Evaluation Harness",
+    p1_tag:"Évaluation automatique de tâches de prompt engineering · ~2 400 lignes · de A à Z",
+    p1_d:"Pipeline qui note des prompts sur des jeux de test cachés. Un modèle <b>target</b> exécute le prompt du candidat ; un <b>LLM-as-judge</b> note la sortie selon des grilles. Donne 0–10 avec détail par cas, delta vs baseline et métriques appariées. Soumissions via un bot Telegram.",
+    p1_f1:"Métriques de qualité et évaluation systématique des sorties — la partie « ingénierie » du travail LLM",
+    p1_f2:"Config d'évaluation reproductible, jeux cachés/entraînement, jugement par grille",
+    p2_t:"Pipeline multimodal de réponse aux avis",
+    p2_tag:"Avis de marketplaces → réponses IA + analyse de photos · entièrement réalisé par moi",
+    p2_d:"Importe les exports d'avis, génère des réponses LLM et analyse les <b>photos via Vision AI</b> pour détecter les défauts avant de répondre. Lots en Postgres ; réponses envoyées à Telegram pour validation humaine (human-in-the-loop).",
+    p2_f1:"Texte + vision (multimodal) — le plus proche du document understanding / OCR dans ma stack",
+    p2_f2:"Un produit « dont tout commerce sur marketplaces a besoin »",
+    p3_t:"Générateur de fiches produit assisté par IA",
+    p3_tag:"Excel → 6 fiches par produit · usage quotidien, grosses économies",
+    p3_d:"Génère des fiches infographiques (hero, specs, dimensions, gamme, montage, usage) depuis un tableur. Modèles HTML rendus en headless vers des PNG pixel-perfect, Anthropic SDK pour l'analyse des descriptions. Remplace des heures de design manuel par série.",
+    p4_t:"IA conversationnelle avec grounding",
+    p4_tag:"Assistant IA ancré sur un catalogue · ~0,003 $ / dialogue",
+    p4_d:"Assistant strictement ancré sur un catalogue pour éviter les hallucinations, avec un <b>vérificateur asynchrone</b> qui recontrôle chaque réponse face aux données source et signale les écarts. Multilingue, en streaming, PWA installable, notifications Telegram.",
+    p5_t:"Assistant RAG en production + infrastructure LLM résiliente",
+    p5_tag:"PWA en magasin : recherche + dialogue LLM avec couche de fiabilité",
+    p5_d:"Recherche sur un catalogue (MiniSearch) alimentant un dialogue LLM pour choisir le bon produit/kit. Durci pour la production : <b>chaîne de modèles de repli</b>, proxy Cloudflare Worker avec rate-limiting et prefix-caching, scan de codes-barres/QR et saisie vocale.",
+    p6_t:"Automatisation par agents + observabilité",
+    p6_tag:"Automatisation de contenu depuis Telegram avec suivi des coûts",
+    p6_d:"Un agent qui publie du contenu et édite un site via des commandes en langage naturel, sur un <b>Command Pipeline</b> réutilisable. Remarquable pour l'ingénierie : <b>journalisation des tokens et du coût en USD par commande dans Postgres</b> (observabilité), advisory locks pour la concurrence et build-gate local avant publication.",
+    more:"<b>Aussi :</b> marketplace de vêtements avec recherche sémantique (Next.js) · plateforme d'évaluation multi-agents (aiogram + Postgres) · framework de 18 agents pour workflows de dev publié en paquet npm · outils de génération de documents en Python.",
+    skills_h:"Compétences", skills_sub:"Niveaux honnêtes — y compris ce que j'apprends encore.",
+    lv_adv:"Avancé", lv_str:"Solide", lv_wrk:"En pratique", lv_lrn:"En cours",
+    prov_h:"Fournisseurs de LLM", infra_h:"Infra et outils",
+    foot_h:"Discutons",
+    foot_p:"Ouvert aux postes à distance d'AI Product / Automation Engineer — et à la relocalisation. Je réponds vite."
+  },
+  de:{
+    _name:"DE",
+    role:"AI Product / Automation Engineer",
+    role_line:"Ich baue produktive LLM-Anwendungen und Geschäftsprozess-Automatisierung",
+    tagline:"Ich bringe KI-Produkte von der Idee zum funktionierenden Geschäftsergebnis — Grounding/RAG, Output-Evaluation, multimodale Pipelines und agentische Automatisierung. Ich liefere schnell, end-to-end, und messe das Wesentliche.",
+    meta_loc:"Kaliningrad, Russland (GMT+2) · remote · umzugsbereit",
+    meta_lang:"Englisch B2 (Auffrischung) · Russisch Muttersprache",
+    cta_proj:"Projekte ansehen", cta_contact:"Kontakt",
+    about_h:"Was ich mache",
+    about_sub:"Seit Nov. 2025 habe ich als unabhängiger Entwickler über 5 produktive LLM-Anwendungen ausgeliefert, dazu mein eigenes LLM-Evaluations-System.",
+    str_h:"Stärken",
+    str_1:"End-to-end-Lieferung: Idee → Architektur → Produktion → messbares Ergebnis",
+    str_2:"Prompt Engineering & LLM-Integration in echten Produkten",
+    str_3:"LLM-Output-Evaluation (LLM-as-Judge, Rubriken, Metriken)",
+    str_4:"Grounding / RAG & multimodale (Vision) Pipelines",
+    str_5:"Prozessautomatisierung, die echtes Geld spart",
+    grow_h:"Ehrlich gesagt, woran ich wachse",
+    grow_1:"Eigenständigeres Coding & Debugging ohne KI-Unterstützung",
+    grow_2:"ML-/Mathe-Grundlagen (liebe ich wirklich — will Tiefe)",
+    grow_3:"Industrieller RAG/eval-Stack: LangChain, LlamaIndex, Ragas, MLflow",
+    note:"Ich arbeite KI-gestützt: Ich entwerfe das System, schreibe die Prompts, bewerte die Outputs und orchestriere den Bau. Ich sage das offen — und baue aktiv meine eigenständige Entwicklung und ML-Grundlagen aus.",
+    proj_h:"Ausgewählte Projekte",
+    proj_sub:"Kundenarbeit ist anonymisiert. Code-Beispiele auf Anfrage, wo die Vertraulichkeit es erlaubt.",
+    b_flag:"★ Vorzeige", b_prod:"Produktion", b_use:"im Einsatz", b_pdt:"Produkt",
+    p1_t:"LLM Evaluation Harness",
+    p1_tag:"Automatische Bewertung von Prompt-Engineering-Aufgaben · ~2.400 Zeilen · von A bis Z",
+    p1_d:"Pipeline, die Prompts gegen versteckte Testsätze bewertet. Ein <b>Target</b>-Modell führt den Prompt des Kandidaten aus; ein <b>LLM-as-Judge</b> bewertet den Output anhand von Rubriken. Ergibt 0–10 mit Aufschlüsselung pro Fall, Delta vs. Baseline und gepaarten Metriken. Einreichungen über einen Telegram-Bot.",
+    p1_f1:"Qualitätsmetriken & systematische Output-Evaluation — der technische Kern der LLM-Arbeit",
+    p1_f2:"Reproduzierbare Eval-Config, versteckte/Trainings-Sätze, Rubrik-basierte Bewertung",
+    p2_t:"Multimodale Pipeline für Bewertungsantworten",
+    p2_tag:"Marktplatz-Bewertungen → KI-Antworten + Fotoanalyse · vollständig von mir umgesetzt",
+    p2_d:"Importiert Bewertungs-Exporte, generiert LLM-Antworten und analysiert angehängte <b>Fotos via Vision AI</b>, um Mängel vor der Antwort zu erkennen. Batches in Postgres; Antworten gehen zur menschlichen Freigabe an Telegram (Human-in-the-Loop).",
+    p2_f1:"Text + Vision (multimodal) — am nächsten an Document Understanding / OCR in meiner Stack",
+    p2_f2:"Ein Produkt, das jedes Marktplatz-Business braucht",
+    p3_t:"KI-gestützter Produktkarten-Generator",
+    p3_tag:"Excel → 6 Karten pro Produkt · täglich im Einsatz, große Einsparung",
+    p3_d:"Erzeugt Infografik-Karten (Hero, Specs, Maße, Reihe, Montage, Anwendung) aus einer Tabelle. HTML-Vorlagen headless zu pixelgenauen PNGs gerendert, Anthropic SDK zur Beschreibungsanalyse. Ersetzt Stunden manuellen Designs pro Serie.",
+    p4_t:"Conversational AI mit Grounding",
+    p4_tag:"KI-Assistent gegroundet auf einen Katalog · ~0,003 $ / Dialog",
+    p4_d:"Assistent, streng auf einen Katalog gegroundet gegen Halluzinationen, mit einem <b>asynchronen Verifizierer</b>, der jede Antwort gegen die Quelldaten prüft und Abweichungen markiert. Mehrsprachig, Streaming, installierbare PWA, Telegram-Benachrichtigungen.",
+    p5_t:"RAG-Assistent in Produktion + robuste LLM-Infrastruktur",
+    p5_tag:"In-Store-PWA: Retrieval + LLM-Dialog mit Zuverlässigkeitsschicht",
+    p5_d:"Retrieval über einen Katalog (MiniSearch) speist einen LLM-Dialog zur Auswahl des richtigen Produkts/Sets. Produktionshart: <b>Modell-Fallback-Kette</b>, Cloudflare-Worker-Proxy mit Rate-Limiting und Prefix-Caching, Barcode-/QR-Scan und Spracheingabe.",
+    p6_t:"Agentische Automatisierung + Observability",
+    p6_tag:"Telegram-gesteuerte Content-Automatisierung mit Kostenerfassung",
+    p6_d:"Ein Agent, der Inhalte veröffentlicht und eine Website per Befehlen in natürlicher Sprache bearbeitet, auf einer wiederverwendbaren <b>Command Pipeline</b>. Bemerkenswert die Technik: <b>Token- und USD-Kosten-Logging pro Befehl in Postgres</b> (Observability), Advisory Locks für Nebenläufigkeit und lokales Build-Gate vor der Veröffentlichung.",
+    more:"<b>Außerdem:</b> Kleidungs-Marktplatz mit semantischer Suche (Next.js) · Multi-Agent-Evaluationsplattform (aiogram + Postgres) · 18-Agenten-Framework für Dev-Workflows als npm-Paket · Python-Tools zur Dokumentenerstellung.",
+    skills_h:"Kenntnisse", skills_sub:"Ehrliche Niveaus — auch das, was ich noch lerne.",
+    lv_adv:"Fortgeschritten", lv_str:"Stark", lv_wrk:"In der Praxis", lv_lrn:"Im Lernen",
+    prov_h:"LLM-Anbieter", infra_h:"Infra & Tools",
+    foot_h:"Sprechen wir",
+    foot_p:"Offen für Remote-Rollen als AI Product / Automation Engineer — und für Umzug. Ich antworte schnell."
+  }
+};
+
+function setLang(l){
+  const d = I18N[l] || I18N.en;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const k = el.getAttribute('data-i'); if(d[k]!==undefined) el.textContent = d[k];
+  });
+  document.querySelectorAll('[data-ih]').forEach(el=>{
+    const k = el.getAttribute('data-ih'); if(d[k]!==undefined) el.innerHTML = d[k];
+  });
+  document.documentElement.lang = l;
+  document.querySelectorAll('#toggle button').forEach(b=>b.classList.toggle('active', b.dataset.l===l));
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+
+(function(){
+  const tog = document.getElementById('toggle');
+  Object.keys(I18N).forEach(l=>{
+    const b = document.createElement('button');
+    b.textContent = I18N[l]._name; b.dataset.l = l;
+    b.onclick = ()=>setLang(l);
+    tog.appendChild(b);
+  });
+  let saved='en';
+  try{ saved = localStorage.getItem('lang') || (navigator.language||'').slice(0,2); }catch(e){}
+  setLang(I18N[saved] ? saved : 'en');
+})();
+</script>
+</body>
+</html>

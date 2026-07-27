@@ -1,0 +1,14 @@
+.env
+job-pipeline/
+ATS_CHECKLIST.md
+CONTEXT.md
+Cover Letter.DOCX
+CV_Nikolay_Kapelyushny_*.docx
+CV_Nikolay_Kapelyushny_*.pdf
+JOB_SEARCH_PLAN.md
+LINKEDIN_PROFILE.md
+cv.md
+make_cv.py
+tasks.json
+.vscode/
+~$*.docx
