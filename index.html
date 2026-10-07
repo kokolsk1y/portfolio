@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b18">
+  <meta name="description" content="Nikolay Kapelushniy — Applied AI Engineer. Explore the work, then choose the skills your team needs.">
+  <title>Nikolay Kapelushniy — Applied AI Engineer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="world" aria-hidden="true"></canvas>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#story" id="brand-link" aria-label="Nikolay Kapelushniy, start"><span class="brand-mark">NK<span class="accent-period">.</span></span><span class="brand-label">APPLIED AI PORTFOLIO</span></a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <button class="nav-link active" type="button" data-go="0" data-i18n="navStory">Story</button>
+      <button class="nav-link" type="button" data-go="1" data-i18n="navWork">Work</button>
+      <button class="nav-link" type="button" id="nav-skills" data-i18n="navSkills">Skill match</button>
+      <a class="nav-link nav-contact" href="mailto:ikokolsk1y@gmail.com" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="motion-toggle" class="text-control" type="button" aria-pressed="false" title="Toggle motion">✦ <span data-i18n="motion">Motion</span></button>
+      <div class="language-switch" role="group" aria-label="Language"><button id="lang-en" type="button" class="selected" aria-pressed="true">EN</button><button id="lang-ru" type="button" aria-pressed="false">RU</button></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="experience" id="story" aria-label="Portfolio story">
+      <div id="scene-host" aria-live="polite"></div>
+      <div class="story-controls" aria-label="Story controls">
+        <div id="chapter-dots" class="chapter-dots" role="group" aria-label="Chapters"></div>
+        <span class="scroll-hint" data-i18n="scrollHint">SCROLL TO EXPLORE</span>
+      </div>
+    </section>
+
+    <section id="match" class="match-section" hidden aria-label="Skill match">
+      <div class="match-shell">
+        <div class="match-heading"><div><span class="match-kicker" data-i18n="matchKicker">THE SKILL MATCH</span><h2 data-i18n="matchHeading">What does your team need?</h2></div><button type="button" id="exit-match" class="close-button" aria-label="Close skill match">×</button></div>
+        <div class="match-progress"><span class="match-progress-line"><span id="match-progress-fill"></span></span><span id="match-shortlist-count">Building your shortlist</span></div>
+        <div class="deck-area"><div class="deck-shadow deck-shadow-back" aria-hidden="true"></div><div class="deck-shadow deck-shadow-front" aria-hidden="true"></div><article id="skill-card" class="skill-card" tabindex="0" aria-live="polite"></article></div>
+        <div class="swipe-controls"><button id="skip-skill" class="swipe-button skip" type="button"><span class="button-icon">×</span><span data-i18n="lessRelevant">Less relevant</span></button><button id="undo-skill" class="undo-button" type="button" data-i18n="undo">Undo</button><button id="choose-skill" class="swipe-button choose" type="button"><span class="button-icon">✓</span><span data-i18n="needThis">Need this</span></button></div>
+        <p class="deck-tip" data-i18n="deckTip">Swipe the card or use the buttons. Your choices stay in this browser.</p>
+      </div>
+    </section>
+
+    <section id="result" class="result-section" hidden aria-label="Your skill match result">
+      <div class="result-shell"><span class="match-kicker" data-i18n="resultKicker">THE CONNECTION</span><h2 id="result-title">It’s a match.</h2><p id="result-intro" class="result-intro"></p><div class="match-summary"><div><span data-i18n="youNeed">YOUR PRIORITIES</span><div id="selected-skills" class="selected-skills"></div></div><div><span data-i18n="iBring">WHAT I BRING</span><p id="result-bridge"></p></div></div><h3 data-i18n="resultEvidence">See the work behind the match</h3><div id="result-projects" class="result-projects"></div><div class="result-closing"><div><h3 data-i18n="resultClosingTitle">I’m ready to discuss your role.</h3><p data-i18n="resultClosingBody">If your stack includes something I haven’t used yet, I’ll be direct about the gap, learn it quickly and validate it in practice. Let’s talk about what your team needs.</p></div><div class="contact-actions"><a class="primary-button" href="https://t.me/kokolsk1y" target="_blank" rel="noopener" data-i18n="telegramCta">Let’s talk on Telegram</a><a href="https://www.linkedin.com/in/nikolay-kapelushniy-365665420/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:ikokolsk1y@gmail.com">Email</a></div></div><button id="restart-match" type="button" class="subtle-button" data-i18n="restart">Start again</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>© <span id="year">2026</span> Nikolay Kapelushniy</span><span data-i18n="footer">Built around the work. Designed for a conversation.</span><div><a href="https://github.com/kokolsk1y" target="_blank" rel="noopener">GitHub</a><a href="https://t.me/kokolsk1y" target="_blank" rel="noopener">Telegram</a><a href="https://www.linkedin.com/in/nikolay-kapelushniy-365665420/" target="_blank" rel="noopener">LinkedIn</a></div></footer>
+  <noscript><div class="noscript"><h1>Nikolay Kapelushniy — Applied AI Engineer</h1><p>7+ years in backend engineering and AI automation. Work includes a retail AI assistant, review automation, LLM evaluation, and human review workflows.</p><p>Experience: Macy’s, Sharp Decisions, Nelson Connects, Turing, and independent Applied AI projects. Education: Electronics Engineering at Immanuel Kant Baltic Federal University; AI Engineering coursework at Beihang University.</p><p><a href="https://github.com/kokolsk1y">GitHub projects</a> · <a href="https://t.me/kokolsk1y">Telegram</a> · <a href="mailto:ikokolsk1y@gmail.com">Email</a></p></div></noscript>
+  <script src="app.js" defer></script>
+  <script type="module" src="scene.js"></script>
+</body>
+</html>
