@@ -6,10 +6,10 @@ An English-first, Russian-optional interactive introduction for a recruiter or h
 
 ## Visitor journey
 
-1. **Opening / 10 seconds.** Name, role and one clear promise: turning operational problems into AI tools that people can actually use. Controls: scroll, arrows, direct `Work`, `Skills`, and contact.
+1. **Opening / 10 seconds.** Name, role and one clear promise: turning operational problems into AI tools that people can actually use. Controls: scroll, chapter dots, direct `Work`, `Skills`, and contact.
 2. **Three proof scenes / under one minute.** Each scene changes the 3D environment while the content stays in one reading area: retail assistant (`ZalAssist`), operator automation (`operator-card-bot` plus `aws-brand-site`), and evaluation / human review (`assistant-hub`). Each scene offers a repository link and distinguishes shipped code from architecture.
 3. **Career and education.** Use the current CV as the approved source: backend work at Macy's, Sharp Decisions and Turing; AI automation at Nelson Connects; independent Applied AI work. Show electronics engineering at Immanuel Kant Baltic Federal University and AI engineering coursework / professional training at Beihang University. Beihang must not be presented as a degree.
-4. **Invitation.** “Which capabilities matter for your role?” The recruiter can swipe right for needed skills or left for less relevant ones. Button and keyboard equivalents are always available. Every skill card answers where it was learned and where it was used, with a project link where public evidence exists.
+4. **Invitation.** One more scroll after the final story scene slides the presentation left and reveals Skill match from the right. Closing the game reverses the transition. The recruiter can swipe right for needed skills or left for less relevant ones. Button and keyboard equivalents are always available. Every skill card answers where it was learned and where it was used, with a project link where public evidence exists.
 5. **Match report.** Summarize chosen capabilities and show the most relevant public projects. Never manufacture a percentage of “compatibility” or claim that the employer and candidate match automatically. For unfamiliar requirements, offer to discuss the gap and a concrete learning plan, without claiming prior experience.
 6. **Action.** Telegram, LinkedIn, GitHub, email. Restart or revisit selections. The site does not collect or transmit the recruiter’s choices.
 

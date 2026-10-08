@@ -6,7 +6,7 @@ An interactive portfolio for recruiter and hiring-manager conversations. The sit
 
 The site is static: `index.html`, `styles.css`, `app.js` and `scene.js`. Serve the repository root over HTTP, for example with `python -m http.server 8765`, then open `http://localhost:8765/`. No build step is required. The 3D scene loads the MIT-licensed Three.js module from jsDelivr; the content and skill game remain usable if the module is unavailable. Motion can be disabled in the header, and reduced-motion settings are respected.
 
-The interface is English-first with a Russian switch. The story supports scroll, chapter dots, and keyboard navigation. The skill game supports dragging, buttons, and keyboard input. Selections stay in browser memory and are not sent to a server.
+The interface is English-first with a Russian switch. The story supports scroll, chapter dots, and keyboard navigation. Scrolling once more after the final chapter slides the story left and brings Skill match in from the right; closing the game reverses the transition. The skill game supports dragging, buttons, and keyboard input. Selections stay in browser memory and are not sent to a server.
 
 The presentation script, factual sources, and claim rules are in [SITE_SCENARIO.md](SITE_SCENARIO.md). Career history and metrics come from the current CV supplied by Nikolay; older local drafts are superseded.
 

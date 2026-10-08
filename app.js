@@ -7,7 +7,7 @@ const skillCard = $('#skill-card');
 
 const ui = {
   en: {
-    navStory:'Story', navWork:'Work', navSkills:'Skill match', navContact:'Contact', motion:'Motion', scrollHint:'SCROLL TO EXPLORE',
+    navStory:'Story', navWork:'Work', navSkills:'Skill match', navContact:'Contact', contactHint:'Ready to talk? Message me on Telegram.', motion:'Motion', scrollHint:'SCROLL TO EXPLORE', matchScrollHint:'SCROLL ON TO SKILL MATCH',
     matchKicker:'THE SKILL MATCH', matchHeading:'What does your team need?', lessRelevant:'Less relevant', needThis:'Need this', undo:'Undo', deckTip:'Swipe the card or use the buttons. Your choices stay in this browser.',
     resultKicker:'THE CONNECTION', resultEvidence:'See the work behind the match', resultClosingTitle:'I’m ready to discuss your role.', resultClosingBody:'If your stack includes something I haven’t used yet, I’ll be direct about the gap, learn it quickly and validate it in practice. Let’s talk about what your team needs.', telegramCta:'Let’s talk on Telegram', restart:'Start again', footer:'Built around the work. Designed for a conversation.',youNeed:'YOUR PRIORITIES',iBring:'WHAT I BRING',
     learned:'LEARNED', used:'USED', proof:'EXPLORE PROJECT', privateProof:'PRIVATE WORK / CV', selected:'Shortlist in progress', resultIntro:(n)=>n?'The capabilities you chose connect directly to work I have done. Here is the overlap, with projects you can inspect.':'No specific capabilities selected yet. Here is a quick view of my work; I would be glad to discuss what your team actually needs.',
@@ -15,7 +15,7 @@ const ui = {
     noSelection:'Open to discussing your priorities', projectLink:'View project'
   },
   ru: {
-    navStory:'История', navWork:'Проекты', navSkills:'Совпадение', navContact:'Связаться', motion:'Анимация', scrollHint:'ЛИСТАЙТЕ ДАЛЬШЕ',
+    navStory:'История', navWork:'Проекты', navSkills:'Совпадение', navContact:'Связаться', contactHint:'Готовы обсудить задачи? Напишите мне в Telegram.', motion:'Анимация', scrollHint:'ЛИСТАЙТЕ ДАЛЬШЕ', matchScrollHint:'ЛИСТАЙТЕ К ПОДБОРУ НАВЫКОВ',
     matchKicker:'ПОДБОР НАВЫКОВ', matchHeading:'Что нужно вашей команде?', lessRelevant:'Менее важно', needThis:'Нужно', undo:'Отменить', deckTip:'Смахните карточку или используйте кнопки. Выбор остаётся в вашем браузере.',
     resultKicker:'ТОЧКА СОВПАДЕНИЯ', resultEvidence:'Проекты за этим совпадением', resultClosingTitle:'Готов рассмотреть ваше предложение.', resultClosingBody:'Если в вашем стеке есть то, с чем я ещё не работал, честно обозначу пробел, быстро изучу новую часть и проверю её на практике. Давайте обсудим задачи команды.', telegramCta:'Обсудить в Telegram', restart:'Начать заново', footer:'Основано на работе. Создано для диалога.',youNeed:'ВАШИ ПРИОРИТЕТЫ',iBring:'МОЙ ОПЫТ',
     learned:'ИЗУЧИЛ', used:'ПРИМЕНИЛ', proof:'ОТКРЫТЬ ПРОЕКТ', privateProof:'ЗАКРЫТЫЙ ПРОЕКТ / CV', selected:'Список формируется', resultIntro:(n)=>n?'Выбранные вами навыки связаны с задачами, которые я уже решал. Ниже — конкретные проекты, которые можно посмотреть.':'Пока вы не отметили конкретные навыки. Ниже — короткий обзор моей работы; буду рад обсудить реальные задачи команды.',
@@ -104,6 +104,7 @@ let skillIndex=0;
 let choices=[];
 let lastWheel=0;
 let locked=false;
+let transitioning=false;
 
 function val(value){return typeof value==='string'?value:value[language]}
 function sceneHtml(scene,index){
@@ -119,17 +120,47 @@ function renderScene(){
   document.body.dataset.theme=scenes[sceneIndex].theme;
   document.dispatchEvent(new CustomEvent('portfolio-scene',{detail:{index:sceneIndex,theme:scenes[sceneIndex].theme}}));
   document.querySelectorAll('[data-go]').forEach(button=>button.classList.toggle('active',Number(button.dataset.go)===(sceneIndex===0?0:1)));
+  const scrollHint=$('.scroll-hint');
+  scrollHint.textContent=sceneIndex===scenes.length-1?ui[language].matchScrollHint:ui[language].scrollHint;
+  scrollHint.classList.toggle('next-mode',sceneIndex===scenes.length-1);
+  updateContactHint();
 }
-function goScene(next){sceneIndex=Math.max(0,Math.min(scenes.length-1,next));showMode('story');renderScene()}
-function showMode(next){mode=next;story.hidden=next!=='story';match.hidden=next!=='match';result.hidden=next!=='result';document.body.dataset.mode=next;window.scrollTo({top:0,behavior:'instant'});document.dispatchEvent(new CustomEvent('portfolio-mode',{detail:{mode:next}}))}
+function goScene(next){if(transitioning)return;sceneIndex=Math.max(0,Math.min(scenes.length-1,next));if(mode!=='story')showMode('story');renderScene()}
+function advanceStory(direction){if(transitioning)return;if(direction>0&&sceneIndex===scenes.length-1){slideBetweenStoryAndMatch('forward');return}goScene(sceneIndex+direction)}
+function updateContactHint(){document.querySelector('.nav-contact').classList.toggle('contact-nudge',mode==='result'||(mode==='story'&&sceneIndex===scenes.length-1))}
+function showMode(next){mode=next;story.hidden=next!=='story';match.hidden=next!=='match';result.hidden=next!=='result';document.body.dataset.mode=next;document.querySelectorAll('[data-go]').forEach(button=>button.classList.toggle('active',next==='story'&&Number(button.dataset.go)===(sceneIndex===0?0:1)));$('#nav-skills').classList.toggle('active',next!=='story');updateContactHint();window.scrollTo({top:0,behavior:'instant'});document.dispatchEvent(new CustomEvent('portfolio-mode',{detail:{mode:next}}))}
+function slideBetweenStoryAndMatch(direction){
+  if(transitioning)return;
+  if(direction==='forward'){choices=[];skillIndex=0;renderSkill();match.scrollTop=0}
+  else{sceneIndex=scenes.length-1;renderScene();story.scrollTop=0}
+  if(document.body.classList.contains('no-motion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    showMode(direction==='forward'?'match':'story');
+    if(direction==='forward')skillCard.focus({preventScroll:true});
+    return;
+  }
+  transitioning=true;
+  story.hidden=false;match.hidden=false;
+  document.querySelectorAll('[data-go]').forEach(button=>button.classList.toggle('active',direction==='backward'&&Number(button.dataset.go)===1));
+  $('#nav-skills').classList.toggle('active',direction==='forward');
+  document.body.dataset.slide=direction;
+  match.getBoundingClientRect();
+  setTimeout(()=>document.body.classList.add('slide-active'),32);
+  setTimeout(()=>{
+    showMode(direction==='forward'?'match':'story');
+    document.body.classList.remove('slide-active');delete document.body.dataset.slide;
+    transitioning=false;
+    if(direction==='forward')skillCard.focus({preventScroll:true});
+  },900);
+}
 function applyLanguage(next){
+  if(transitioning)return;
   language=next;document.documentElement.lang=next;
   document.querySelectorAll('[data-i18n]').forEach(node=>{const text=ui[next][node.dataset.i18n];if(typeof text==='string')node.textContent=text});
   $('#lang-en').classList.toggle('selected',next==='en');$('#lang-ru').classList.toggle('selected',next==='ru');
   $('#lang-en').setAttribute('aria-pressed',String(next==='en'));$('#lang-ru').setAttribute('aria-pressed',String(next==='ru'));
   if(mode==='story')renderScene();if(mode==='match')renderSkill();if(mode==='result')renderResult();
 }
-function showMatch(reset=false){if(reset){choices=[];skillIndex=0}showMode('match');renderSkill();skillCard.focus({preventScroll:true})}
+function showMatch(reset=false){if(transitioning)return;if(reset){choices=[];skillIndex=0}showMode('match');renderSkill();skillCard.focus({preventScroll:true})}
 function renderSkill(){
   if(skillIndex>=skills.length){showMode('result');renderResult();return}
   const skill=skills[skillIndex];const proof=skill.projects[0]?projects[skill.projects[0]]:null;
@@ -152,14 +183,14 @@ function renderResult(){
   $('#result-projects').innerHTML=ids.map(id=>`<div class="project-result"><div><strong>${projects[id].title}</strong><p>${val(projects[id].summary)}</p></div><a href="${projects[id].url}" target="_blank" rel="noopener">${ui[language].projectLink}</a></div>`).join('');
 }
 
-host.addEventListener('click',(event)=>{const action=event.target.closest('[data-action]')?.dataset.action;if(action==='next')goScene(sceneIndex+1);if(action==='match')showMatch(true)});
+host.addEventListener('click',(event)=>{const action=event.target.closest('[data-action]')?.dataset.action;if(action==='next')advanceStory(1);if(action==='match'){if(sceneIndex===scenes.length-1)slideBetweenStoryAndMatch('forward');else showMatch(true)}});
 document.querySelectorAll('[data-go]').forEach(button=>button.addEventListener('click',()=>goScene(Number(button.dataset.go))));
 $('#brand-link').addEventListener('click',(event)=>{event.preventDefault();goScene(0)});
-$('#nav-skills').addEventListener('click',()=>showMatch(true));
+$('#nav-skills').addEventListener('click',()=>{if(mode==='story'&&sceneIndex===scenes.length-1)slideBetweenStoryAndMatch('forward');else showMatch(true)});
 $('#chapter-dots').addEventListener('click',(event)=>{const dot=event.target.closest('[data-chapter]');if(dot)goScene(Number(dot.dataset.chapter))});
 $('#lang-en').addEventListener('click',()=>applyLanguage('en'));
 $('#lang-ru').addEventListener('click',()=>applyLanguage('ru'));
-$('#exit-match').addEventListener('click',()=>goScene(5));
+$('#exit-match').addEventListener('click',()=>slideBetweenStoryAndMatch('backward'));
 $('#skip-skill').addEventListener('click',()=>chooseSkill(false));
 $('#choose-skill').addEventListener('click',()=>chooseSkill(true));
 $('#undo-skill').addEventListener('click',undoSkill);
@@ -167,21 +198,22 @@ $('#restart-match').addEventListener('click',()=>showMatch(true));
 $('#motion-toggle').addEventListener('click',()=>{const off=document.body.classList.toggle('no-motion');$('#motion-toggle').setAttribute('aria-pressed',String(off));document.dispatchEvent(new CustomEvent('portfolio-motion',{detail:{off}}))});
 
 document.addEventListener('keydown',(event)=>{
+  if(transitioning)return;
   if(event.altKey||event.ctrlKey||event.metaKey||['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
   if(mode==='story'){
-    if(event.key==='ArrowRight'||event.key==='ArrowDown'||event.key==='PageDown'){event.preventDefault();goScene(sceneIndex+1)}
+    if(event.key==='ArrowRight'||event.key==='ArrowDown'||event.key==='PageDown'){event.preventDefault();advanceStory(1)}
     if(event.key==='ArrowLeft'||event.key==='ArrowUp'||event.key==='PageUp'){event.preventDefault();goScene(sceneIndex-1)}
   }else if(mode==='match'){
     if(event.key==='ArrowRight'){event.preventDefault();chooseSkill(true)}
     if(event.key==='ArrowLeft'){event.preventDefault();chooseSkill(false)}
     if(event.key==='Backspace'){event.preventDefault();undoSkill()}
-    if(event.key==='Escape')goScene(5);
+    if(event.key==='Escape')slideBetweenStoryAndMatch('backward');
   }else if(mode==='result'&&event.key==='Escape')goScene(5);
 });
-document.addEventListener('wheel',(event)=>{if(mode!=='story'||Math.abs(event.deltaY)<16)return;const now=Date.now();if(now-lastWheel<650)return;lastWheel=now;goScene(sceneIndex+(event.deltaY>0?1:-1))},{passive:true});
+document.addEventListener('wheel',(event)=>{if(mode!=='story'||event.ctrlKey)return;event.preventDefault();if(transitioning||Math.abs(event.deltaY)<16)return;const now=Date.now();if(now-lastWheel<650)return;lastWheel=now;advanceStory(event.deltaY>0?1:-1)},{passive:false});
 let storyTouchY=null;
 story.addEventListener('touchstart',(event)=>{if(event.target.closest('button,a'))return;storyTouchY=event.touches[0]?.clientY??null},{passive:true});
-story.addEventListener('touchend',(event)=>{if(mode!=='story'||storyTouchY===null)return;const difference=storyTouchY-(event.changedTouches[0]?.clientY??storyTouchY);storyTouchY=null;if(Math.abs(difference)>65)goScene(sceneIndex+(difference>0?1:-1))},{passive:true});
+story.addEventListener('touchend',(event)=>{if(mode!=='story'||storyTouchY===null)return;const difference=storyTouchY-(event.changedTouches[0]?.clientY??storyTouchY);storyTouchY=null;if(Math.abs(difference)>65)advanceStory(difference>0?1:-1)},{passive:true});
 
 let startX=0,startY=0,dragging=false;
 skillCard.addEventListener('pointerdown',(event)=>{if(mode!=='match'||event.target.closest('a'))return;startX=event.clientX;startY=event.clientY;dragging=true;skillCard.setPointerCapture(event.pointerId);skillCard.classList.add('dragging')});
