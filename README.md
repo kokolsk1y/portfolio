@@ -30,13 +30,14 @@ The visual design, written content and site code here are original; the listed p
 | Project | What the repository demonstrates |
 | --- | --- |
 | [Operator Card Bot](https://github.com/kokolsk1y/operator-card-bot) | Telegram workflow for operators, product-image processing, and PNG card rendering. |
+| [Multi-channel AI Review Automation](https://github.com/kokolsk1y/multi-channel-ai-review-automation) | Architectural reconstruction of a historical review system: n8n, PostgreSQL/Neon, LLM routing, human controls, and verified publishing. Original exports are unavailable. |
 | [ZalAssist](https://github.com/kokolsk1y/zalassist) | Retail PWA with catalog search, an AI assistant, and barcode/QR input. |
 | [AWS Brand Site](https://github.com/kokolsk1y/aws-brand-site) | Astro product catalog, data tooling, and retail web experiences. |
 | [ElectroCenter TV](https://github.com/kokolsk1y/electrocentre-tv) | In-store display interface and content workflow. |
 | [TableMind Site](https://github.com/kokolsk1y/tablemind-site) | Public-facing SvelteKit site for an AI-assisted restaurant product. |
 | [Assistant Hub](https://github.com/kokolsk1y/assistant-hub) | Product architecture and an LLM evaluation tool with test cases and scoring workflows. |
 
-Some client and internal work is private. A case study or walkthrough can be shared when disclosure is permitted.
+Some client and internal work is private. The review-automation case above is a reconstruction from recollection, not a release of production workflows or independently verified results.
 
 ## Notes for reviewers and automated screening
 
