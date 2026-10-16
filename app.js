@@ -45,7 +45,7 @@ const scenes = [
     title:{en:'Give the repetitive work <em>to the system.</em>',ru:'Повторяющуюся работу — <em>системе.</em>'},
     body:{en:'I designed multi-source review workflows with LLM routing and drafting, expert-gated photo checks, and verified publishing. The public case reconstructs the architecture from recollection.',ru:'Я спроектировал обработку отзывов из разных источников: LLM-маршрутизацию и ответы, экспертную проверку фото и подтверждение публикации. Публичный кейс — реконструкция архитектуры по воспоминаниям.'},
     metrics:[['~5',{en:'ingestion workflows, recalled',ru:'сценариев загрузки, по памяти'}],['~6h → ~15m',{en:'daily manual work, self-reported',ru:'ручной работы в день, по оценке оператора'}]],
-    href:'https://github.com/kokolsk1y/multi-channel-ai-review-automation',link:{en:'Read the reconstructed case study',ru:'Читать реконструкцию кейса'},stack:'n8n · PostgreSQL / Neon · LLM APIs · human review',note:{en:'A historical architecture, documented with its limits.',ru:'Историческая архитектура с обозначенными ограничениями.'}
+    href:'https://github.com/kokolsk1y/multi-channel-ai-review-automation',link:{en:'Read the architecture notes',ru:'Читать реконструкцию кейса'},stack:'n8n · PostgreSQL / Neon · LLM APIs · human review',note:{en:'A historical architecture, documented with its limits.',ru:'Историческая архитектура с обозначенными ограничениями.'}
   },
   {
     theme:'blue',label:{en:'EVALUATION',ru:'ОЦЕНКА LLM'},
