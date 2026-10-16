@@ -37,7 +37,7 @@ The visual design, written content and site code here are original; the listed p
 | [TableMind Site](https://github.com/kokolsk1y/tablemind-site) | Public-facing SvelteKit site for an AI-assisted restaurant product. |
 | [Assistant Hub](https://github.com/kokolsk1y/assistant-hub) | Product architecture and an LLM evaluation tool with test cases and scoring workflows. |
 
-Some client and internal work is private. The review-automation case above is a reconstruction from recollection, not a release of production workflows or independently verified results.
+Some client and internal work is private. The review-automation documentation above reconstructs historical architecture from recollection; production workflows and independently verified results are unavailable.
 
 ## Notes for reviewers and automated screening
 
